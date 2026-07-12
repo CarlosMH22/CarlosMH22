@@ -26,7 +26,7 @@ I build AI systems end-to-end — from on-device LLMs optimized for NPU inferenc
 ---
 
 ### 🧠 What I'm working on
-- 🤖 Building Jarvis, a local multi-agent AI assistant on consumer GPU hardware: semantic task routing, FAISS-based RAG, scored/decaying memory, Whisper STT and Piper TTS
+- 🤖 Building Jarvis, a local multi-agent AI assistant on consumer GPU hardware: hybrid retrieval, semantic routing, and reconciled long-term memory
 - ⚡ Optimizing on-device LLM and vision inference for NPU/edge hardware (ONNX Runtime, quantized models)
 - 📚 Running a self-directed LLM fine-tuning curriculum (Unsloth, QLoRA) from base models to instruction tuning
 
@@ -46,12 +46,12 @@ Self-service ordering kiosk with an on-device LLM (Qwen2.5 via Ollama), a React/
 `React` `FastAPI` `Ollama` `ONNX Runtime` `GStreamer` `NPU Optimization`
 
 **🧠 Jarvis — Local Multi-Agent AI Assistant**
-A local multi-agent assistant running entirely on a consumer GPU (Vulkan/RADV backend): a FAST/THINK/RESEARCH semantic router, SQLite-backed memory with scoring and temporal decay, FAISS retrieval, Whisper speech-to-text, and Piper text-to-speech. Layered session → semantic → core memory architecture with tool-calling agents; future phases target physical deployment via an Arduino client and a Meta Quest 3 WebXR HUD.
-`Python` `FastAPI` `Qwen2.5` `FAISS` `Whisper` `Piper TTS` `LM Studio`
+A local multi-agent assistant running entirely on a consumer GPU (RX 570 8GB, Vulkan/RADV backend), serving Granite 4.1-8B through LM Studio with an optimized KV cache (Flash Attention, KV q8_0, 8192 ctx). A cosine-similarity SemanticRouter classifies incoming queries into five domains (personal assistant, dev, finance, music, general) at 92.7% accuracy in ~5ms per call. Retrieval is hybrid: BM25 + sentence embeddings + an ONNX reranker. Long-term semantic memory uses Mem0-style reconciliation (ADD/UPDATE/DELETE/NOOP via cosine similarity) on top of a layered session → semantic → core memory architecture, with tool-calling agents. Planned: Whisper STT, Piper TTS, an Arduino client, and a Meta Quest 3 WebXR HUD for physical deployment.
+`Python` `FastAPI` `Granite 4.1-8B` `LM Studio` `Hybrid RAG (BM25 + Embeddings + ONNX Reranker)` `SemanticRouter` `Mem0`
 
 **🤖 Multi-Agent Orchestration Framework**
-A modular Python framework for building and coordinating autonomous LLM-driven agents — clean separation between agent logic, tools, orchestration, and client interfaces.
-`Python` `Agentic AI` `LLM Orchestration`
+The modular framework that emerged from building Jarvis: stateless agents running a ReACT loop, tools modeled as file=resource / function=operation, an orchestrator handling routing + context + gateway logic, and a dedicated LLM client layer. New agents are added by defining a system prompt and a tool set — no changes to the core loop required.
+`Python` `Agentic AI` `ReACT` `LLM Orchestration`
 
 **📈 AlphaTradingDesk — Quantitative Trading Dashboard**
 A 4-tab desktop backtester for an Opening Range Breakout (ORB) strategy on US equities/options, built directly on the Interactive Brokers TWS API, with a paper-trading mode using regulatory market data snapshots.
@@ -65,11 +65,11 @@ A compiler and rule-evaluation simulator for a custom domain-specific language f
 
 ### 🛠️ Skills
 
-**LLM & GenAI:** Prompt engineering, RAG, agentic workflows, LLM fine-tuning (Unsloth, QLoRA)
+**LLM & GenAI:** Prompt engineering, hybrid RAG, semantic routing, agentic workflows, LLM fine-tuning (Unsloth, QLoRA)
 **Edge AI & Embedded:** ONNX Runtime / QNNExecutionProvider (HTP backend), GStreamer pipelines, LM Studio, Edge Impulse
 **IoT & Connectivity:** LoRaWAN / ChirpStack, cellular AT command interfaces, MCPTT
-**Data & Storage:** FAISS, SQLite, MongoDB
-**Tools:** Whisper (STT), Piper (TTS), Docker, Flex/Bison, nmap, Git
+**Data & Storage:** SQLite, MongoDB
+**Tools:** Docker, Flex/Bison, nmap, Git
 
 ### 🏆 Accomplishments
 - 🥇 Kaggle Playground Series — Irrigation Prediction: Random Forest model achieved Macro F1 ~0.968, outperforming an XGBoost baseline
