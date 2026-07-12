@@ -1,7 +1,7 @@
 ## Hi, I'm Carlos 👋
 ### AI Engineer | LLM Applications & Multi-Agent Systems | Edge AI & IoT
 
-I build AI systems end-to-end — from on-device LLMs optimized for NPU inference and LoRaWAN-connected industrial IoT gateways, to local multi-agent assistants with RAG, fine-tuned open models, and voice I/O. Currently focused on [TU_ESPECIALIDAD] at [EMPRESA_ACTUAL].
+I build AI systems end-to-end — from on-device LLMs optimized for NPU inference and LoRaWAN-connected industrial IoT gateways, to local multi-agent assistants with RAG, fine-tuned open models, and voice I/O. Currently focused on EDGE AI / IOT at Qualcomm.
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
@@ -26,7 +26,7 @@ I build AI systems end-to-end — from on-device LLMs optimized for NPU inferenc
 ---
 
 ### 🧠 What I'm working on
-- 🤖 Building Jarvis, a local multi-agent AI assistant on consumer GPU hardware: hybrid retrieval, semantic routing, and reconciled long-term memory
+- 🤖 Building a local multi-agent AI assistant on consumer GPU hardware: hybrid retrieval, semantic routing, and reconciled long-term memory
 - ⚡ Optimizing on-device LLM and vision inference for NPU/edge hardware (ONNX Runtime, quantized models)
 - 📚 Running a self-directed LLM fine-tuning curriculum (Unsloth, QLoRA) from base models to instruction tuning
 
@@ -45,12 +45,12 @@ Multi-agent AI assistant for industrial field operators, running 100% locally on
 Self-service ordering kiosk with an on-device LLM (Qwen2.5 via Ollama), a React/Vite frontend streaming responses over SSE from a FastAPI backend, a GStreamer camera pipeline, and an ONNX-based demographics inference module (age/gender) for retail analytics. Optimized inference for NPU execution (ONNX Runtime QNNExecutionProvider, HTP backend), resolving operator-compatibility constraints for on-device acceleration.
 `React` `FastAPI` `Ollama` `ONNX Runtime` `GStreamer` `NPU Optimization`
 
-**🧠 Jarvis — Local Multi-Agent AI Assistant**
+**🧠 Local Multi-Agent AI Assistant**
 A local multi-agent assistant running entirely on a consumer GPU (RX 570 8GB, Vulkan/RADV backend), serving Granite 4.1-8B through LM Studio with an optimized KV cache (Flash Attention, KV q8_0, 8192 ctx). A cosine-similarity SemanticRouter classifies incoming queries into five domains (personal assistant, dev, finance, music, general) at 92.7% accuracy in ~5ms per call. Retrieval is hybrid: BM25 + sentence embeddings + an ONNX reranker. Long-term semantic memory uses Mem0-style reconciliation (ADD/UPDATE/DELETE/NOOP via cosine similarity) on top of a layered session → semantic → core memory architecture, with tool-calling agents. Planned: Whisper STT, Piper TTS, an Arduino client, and a Meta Quest 3 WebXR HUD for physical deployment.
 `Python` `FastAPI` `Granite 4.1-8B` `LM Studio` `Hybrid RAG (BM25 + Embeddings + ONNX Reranker)` `SemanticRouter` `Mem0`
 
 **🤖 Multi-Agent Orchestration Framework**
-The modular framework that emerged from building Jarvis: stateless agents running a ReACT loop, tools modeled as file=resource / function=operation, an orchestrator handling routing + context + gateway logic, and a dedicated LLM client layer. New agents are added by defining a system prompt and a tool set — no changes to the core loop required.
+The modular framework that emerged from building the local multi agent ai assistant: stateless agents running a ReACT loop, tools modeled as file=resource / function=operation, an orchestrator handling routing + context + gateway logic, and a dedicated LLM client layer. New agents are added by defining a system prompt and a tool set — no changes to the core loop required.
 `Python` `Agentic AI` `ReACT` `LLM Orchestration`
 
 **📈 AlphaTradingDesk — Quantitative Trading Dashboard**
